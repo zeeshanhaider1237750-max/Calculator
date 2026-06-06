@@ -34,6 +34,10 @@ let compute = (num1, operator, num2) => {
 }
 
 let updateDisplay = (text) => {
+    if(text=="Syntax Error"){
+        displays.textContent = "Syntax Error";
+        return;
+    }
     let displaySymbol = "";
     if(currentOperator == "add"){
         displaySymbol = "+";
@@ -48,7 +52,7 @@ let updateDisplay = (text) => {
         displaySymbol = "÷";
     }
     displays.textContent = previousValue+" "+displaySymbol+" "+currentValue;
-}
+   }
 
 let handleDigit = (digit) => {
     currentValue += digit;
@@ -64,13 +68,19 @@ let handleOperator =(nextOperator) => {
 
 let handleEquals = () => {
  let result = compute(previousValue, currentOperator, currentValue);
- currentOperator = "";
+ if(isNaN(result)){
+    currentOperator = "";
+    previousValue = "";
+    currentValue = "";
+    updateDisplay("Syntax Error");
+ }
+ else{currentOperator = "";
  previousValue = "";
  currentValue = result;
  updateDisplay(result);
 }
-
-let clearAll = () => {
+}
+let = clearAll = () => {
     currentValue = '';
     previousValue = '';
     currentOperator = '';
@@ -78,10 +88,17 @@ let clearAll = () => {
 }
 
 let deleteDigit = () => {
-   currentValue = currentValue.slice(0, -1);
+    if(currentValue == ""){
+        currentValue ="";
+        currentOperator = "";
+        currentValue = previousValue;
+        previousValue ="";
+        updateDisplay();
+    }
+    else{currentValue = currentValue.slice(0, -1);
     updateDisplay(currentValue);
 }
-
+}
 let handleDecimal = () => {
     if(!currentValue.includes(".")){
         currentValue += ".";
