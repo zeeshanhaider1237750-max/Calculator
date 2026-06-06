@@ -1,10 +1,14 @@
 body{
     margin: 0;
     line-height: 1.1;
-    background-color: aliceblue;
+    background-color: rgb(90, 89, 89);
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+h1{
+    color: #e6e6e6;
+    font-size: 6.5vh;
 }
 .main{
     display: flex;
@@ -13,9 +17,7 @@ body{
     height: 70vh;
     width: 80vh;
     background-color: white;
-    /* border-radius: 5vh; */
-    align-items: baseline;
-    border-radius: 3vh;
+    border: 1px solid black;
 }
 .row{
     display: flex;
@@ -42,13 +44,14 @@ body{
     width: 100%;
     height: 10%;
     border: 1px solid black;
-    background-color: #f7f7f7;
+    background-color: #e6e6e6;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     padding: 0 1rem;
     font-size: 1.6rem;
     box-sizing: border-box;
+    
 }
 #zero, #equal{
     width: 50%;
@@ -57,4 +60,23 @@ body{
 #decimal-point, #S-D, #sign-change{
     width: 33.33%;
     height: 100%;
+}
+.button:hover{
+    background-color: #000000;
+    transform: scale(1.05);
+    box-shadow: 0 0 1vh rgba(red, green, blue, alpha);
+    transition: .04s;
+    color: white;
+}
+p{
+    color: white;
+    margin-top: 100%;
+    font-size: 5vh;
+    padding: 4vh auto;
+    margin: 4% auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: auto 10%;
+
 }

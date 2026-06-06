@@ -51,7 +51,7 @@ let updateDisplay = (text) => {
     else if(currentOperator == "divide"){
         displaySymbol = "÷";
     }
-    displays.textContent = previousValue+" "+displaySymbol+" "+currentValue;
+    displays.textContent = text || (previousValue+" "+displaySymbol+" "+currentValue);
    }
 
 let handleDigit = (digit) => {
@@ -68,15 +68,22 @@ let handleOperator =(nextOperator) => {
 
 let handleEquals = () => {
  let result = compute(previousValue, currentOperator, currentValue);
+ if(currentOperator == ""){
+    return
+ }
+ else if(currentValue== ""){
+    currentValue = previousValue;
+ }
  if(isNaN(result)){
     currentOperator = "";
     previousValue = "";
     currentValue = "";
     updateDisplay("Syntax Error");
  }
- else{currentOperator = "";
- previousValue = "";
- currentValue = result;
+ else{
+ currentOperator = "";
+ previousValue = String(result);
+ currentValue = "";
  updateDisplay(result);
 }
 }
@@ -91,7 +98,7 @@ let deleteDigit = () => {
     if(currentValue == ""){
         currentValue ="";
         currentOperator = "";
-        currentValue = previousValue;
+        currentValue = previousValue.slice(0,-1);
         previousValue ="";
         updateDisplay();
     }
@@ -105,6 +112,16 @@ let handleDecimal = () => {
         updateDisplay();
     }
 }
+ percent.addEventListener('click', () => {
+   if(currentValue ==""){
+    currentValue = previousValue;
+    previousValue = "";
+   }
+   currentValue = currentValue/100;
+   currentValue = String(currentValue);
+   updateDisplay();
+   
+ })
 
 btns.forEach((button) => {
     button.addEventListener('click', () =>{
