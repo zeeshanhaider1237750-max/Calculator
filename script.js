@@ -15,7 +15,8 @@ let currentValue = "";
 let previousValue = "";
 let currentOperator = "";
 let displaySymbol = "";
-
+let calcOperator = "";
+3
 let compute = (num1, operator, num2) => {
     num1 = parseFloat(num1);
     num2 = parseFloat(num2);
@@ -38,35 +39,35 @@ let updateDisplay = (text) => {
         displays.textContent = "Syntax Error";
         return;
     }
-    let displaySymbol = "";
-    if(currentOperator == "add"){
-        displaySymbol = "+";
-    }
-    else if(currentOperator == "subtract"){
-        displaySymbol = "-";
-    }
-    else if(currentOperator == "multiply"){
-        displaySymbol = "x";
-    }
-    else if(currentOperator == "divide"){
-        displaySymbol = "÷";
-    }
-    displays.textContent = text || (previousValue+" "+displaySymbol+" "+currentValue);
+    displays.textContent = text || (previousValue+" "+currentOperator+" "+currentValue);
    }
 
 let handleDigit = (digit) => {
     currentValue += digit;
-    updateDisplay(currentValue);
+    updateDisplay();
 }
 
-let handleOperator =(nextOperator) => {
+let handleOperator =(nextOperator, nextOperatorSymbol) => {
+  if(currentValue !== ""){
     previousValue = currentValue;
     currentValue = "";
-    currentOperator = nextOperator;
-}
+    currentOperator = nextOperatorSymbol;
+    updateDisplay();
+    }
+    else{
+       currentOperator += nextOperatorSymbol
+       }
+       updateDisplay();
+    }
+
 
 
 let handleEquals = () => {
+    let addCount = [...currentOperator].filter(char => char === "+").length;
+    let minusCount = [...currentOperator].filter(char => char === "-").length;
+    let errorCount = [...currentOperator].filter(char =>char === "x" ||  char === "÷").length;
+   
+    }
  let result = compute(previousValue, currentOperator, currentValue);
  if(currentOperator == ""){
     return
@@ -129,7 +130,7 @@ btns.forEach((button) => {
     handleDigit(button.textContent);
 }
 else if([...operator].includes(button)){
-    handleOperator(button.id);
+    handleOperator(button.id, button.textContent);
 }
 else if(button===equal){
     handleEquals();
