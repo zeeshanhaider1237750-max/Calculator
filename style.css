@@ -62,9 +62,9 @@ h1{
     height: 100%;
 }
 .button:hover{
-    background-color: #000000;
+    background-color: #477d96;
     transform: scale(1.05);
-    box-shadow: 0 0 1vh rgba(red, green, blue, alpha);
+    box-shadow: 0 0 1vh rgba(red, green, rgb(9, 9, 75), alpha);
     transition: .04s;
     color: white;
 }

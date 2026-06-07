@@ -145,5 +145,3 @@ else if(button===decimal){
 }
     });
 });
-
-
