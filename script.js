@@ -6,7 +6,6 @@ const AC = document.querySelector('#AC');
 const del = document.querySelector('#del');
 const percent = document.querySelector('#percent');
 const decimal = document.querySelector('#decimal-point');
-const sd = document.querySelector('#S-D');
 const signChange = document.querySelector('#sign-change');
 const equal = document.querySelector('#equal')
 
@@ -28,16 +27,16 @@ let findGCD = (a, b) => {
 let compute = (num1, operator, num2) => {
     num1 = parseFloat(num1);
     num2 = parseFloat(num2);
-    if(operator == "add"){
+    if(operator == "+"){
         return  num1 + num2;
     }
-    else if(operator == "subtract"){
+    else if(operator == "-"){
         return  num1 - num2;
     }
-    else if(operator == "multiply"){
+    else if(operator == "x"){
         return  num1 * num2;
     }
-    else if(operator == "divide"){
+    else if(operator == "÷"){
         return  num1 / num2;
     }
 }
@@ -56,18 +55,24 @@ let handleDigit = (digit) => {
 }
 
 let handleOperator =(nextOperator, nextOperatorSymbol) => {
-  if(currentValue !== ""){
+     
+       
+    if(currentValue !=="" && currentOperator !=="" && previousValue !== ""){
+        let result = compute(previousValue, currentOperator, currentValue);
+        previousValue = String(result);
+        currentValue = "";
+        currentOperator = nextOperatorSymbol;
+    }
+    else if(currentValue !== ""){
     previousValue = currentValue;
     currentValue = "";
     currentOperator = nextOperatorSymbol;
-    updateDisplay();
     }
     else{
-       currentOperator += nextOperatorSymbol
+       currentOperator = nextOperatorSymbol
        }
-       updateDisplay();
-    }
-
+       updateDisplay(); 
+} 
 let handleEquals = () => {
     let addCount = [...currentOperator].filter(char => char === "+").length;
     let minusCount = [...currentOperator].filter(char => char === "-").length;
@@ -81,16 +86,16 @@ let handleEquals = () => {
      return;
     }
     if(currentOperator === "x"){
-        calcOperator = "multiply";
+        calcOperator = "x";
     }
     else if(currentOperator === "÷"){
-        calcOperator = "divide";
+        calcOperator = "÷";
     }
     else if(minusCount % 2 === 0){
-        calcOperator = "add";
+        calcOperator = "+";
     }
     else{
-        calcOperator = "subtract";
+        calcOperator = "-";
     }
     
     let result = compute(previousValue, calcOperator, currentValue);
@@ -151,30 +156,7 @@ let handleEquals = () => {
    updateDisplay();
    
  })
- sd.addEventListener('click', () => {
-     if(currentValue ==""){
-    currentValue = previousValue;
-    previousValue = "";
-   }
-   let digitsCount,  dotIndex;
-   if(currentValue.includes(".")){
-     dotIndex = currentValue.indexOf(".");
-     digitsCount = currentValue.length - dotIndex -1;
-     let denominator = 10 ** digitsCount;
-     currentValue = currentValue*(10**digitsCount);
-     let gcd = findGCD(currentValue, denominator);
-     currentValue = currentValue/gcd;
-     denominator = denominator/gcd;
-    currentValue = currentValue + "/" + denominator;
-    updateDisplay();
-   }
-   else if(currentValue.includes("/")){
-    let numerator, parts;
-    parts = currentValue.split("/");
-    currentValue = String(parts[0]/parts[1]);
-    updateDisplay();
-   }
- })
+
 btns.forEach((button) => {
     button.addEventListener('click', () =>{
         if([...num].includes(button)){

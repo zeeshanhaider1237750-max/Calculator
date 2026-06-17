@@ -53,14 +53,11 @@ h1{
     box-sizing: border-box;
     
 }
-#zero, #equal{
+#zero, #equal, #decimal-point, #sign-change{
     width: 50%;
     height: 100%;
 }
-#decimal-point, #S-D, #sign-change{
-    width: 33.33%;
-    height: 100%;
-}
+
 .button:hover{
     background-color: #477d96;
     transform: scale(1.05);
