@@ -18,7 +18,7 @@ h1{
     display: flex;
     flex-direction: column;
     text-align: center;
-    width: 90%;
+    width: 95%;
     max-width: 380px;
     background-color: white;
     border: 1px solid black;
@@ -33,7 +33,7 @@ h1{
     width: 100%;
     flex: 1;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     cursor: pointer;
     user-select: none;
 }
@@ -46,6 +46,7 @@ h1{
     text-align: center;
     align-items: center;
     justify-content: center;
+    flex-shrink: 1;
 }
 #display{
     width: 100%;
@@ -86,5 +87,4 @@ p{
     justify-content: center;
     align-items: center;
     padding: auto 10%;
-
 }
