@@ -16,10 +16,10 @@ h1{
     flex-direction: column;
     text-align: center;
     width: 90%;
-    max-width: 500px;
+    max-width: 360px;
     background-color: white;
     border: 1px solid black;
-    margin: 2rem auto;
+    margin: 1rem auto;
     justify-content: center;
     aspect-ratio: 1/1;
 }
@@ -59,9 +59,11 @@ h1{
 }
 #zero{
     width: 50%;
+    height: 100%;
 }
 #equal, #decimal-point{
     width: 25%;
+    height: 100%;
 }
 
 .button:hover{
