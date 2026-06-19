@@ -4,7 +4,7 @@ body{
     background-color: rgb(90, 89, 89);
     display: flex;
     flex-direction: column;
-    
+    align-items: center;
 }
 h1{
     color: #e6e6e6;
@@ -15,7 +15,7 @@ h1{
     display: flex;
     flex-direction: column;
     text-align: center;
-    width: 100%;
+    width: 90%;
     max-width: 500px;
     background-color: white;
     border: 1px solid black;
@@ -57,9 +57,11 @@ h1{
     box-sizing: border-box;
     
 }
-#zero, #equal, #decimal-point, #sign-change{
+#zero{
     width: 50%;
-    height: 100%;
+}
+#equal, #decimal-point{
+    width: 25%;
 }
 
 .button:hover{
