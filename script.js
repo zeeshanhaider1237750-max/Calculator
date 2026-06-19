@@ -6,7 +6,6 @@ const AC = document.querySelector('#AC');
 const del = document.querySelector('#del');
 const percent = document.querySelector('#percent');
 const decimal = document.querySelector('#decimal-point');
-const signChange = document.querySelector('#sign-change');
 const equal = document.querySelector('#equal')
 
 let num1, num2;
@@ -194,7 +193,6 @@ let handleEquals = () => {
    currentValue = String(currentValue);
    updateDisplay();
  }
-
 btns.forEach((button) => {
     button.addEventListener('click', () =>{
         if([...num].includes(button)){
@@ -272,6 +270,11 @@ else if(e.key === "Backspace"){
  else if(e.key === "Delete"){
     clearAll();
  }
- else if
+ else if(e.key === "."){
+    handleDecimal();
+ }
+ else if(e.key === "%"){
+    percentageCalc();
+ }
  })
 
