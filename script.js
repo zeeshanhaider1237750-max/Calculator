@@ -62,6 +62,7 @@ let handleDigit = (digit) => {
     previousValue = "";
     shouldDisplayResult = false;
     }
+    if (currentValue.length >= 25) return;
     currentValue += digit;
     updateDisplay();
 }
